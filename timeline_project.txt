@@ -1,0 +1,7 @@
+Initial commit (02-06-2020 20:20 WIB)
+- Membuat file migrasi untuk database.
+- Membuat factory & seeder untuk data testing.
+- Mengatur relationships setiap model.
+- Membuat PostController dan menyelesaikan fungsi-fungsi yang ada di dalamnya.
+- Membuat route API (apiResource) untuk PostController.
+- Membuat validasi menggunakan bearer token untuk fungsi selain index dan show pada PostController.
