@@ -5,3 +5,9 @@ Initial commit (02-06-2020 20:20 WIB)
 - Membuat PostController dan menyelesaikan fungsi-fungsi yang ada di dalamnya.
 - Membuat route API (apiResource) untuk PostController.
 - Membuat validasi menggunakan bearer token untuk fungsi selain index dan show pada PostController.
+
+Second commit (03-06-2020 19:39 WIB)
+- Membuat middleware untuk menambahkan key user pada request.
+- Menerapkan middleware pada fungsi update & destroy.
+- Menambahkan kolom is_admin pada table users.
+- Membuat fungsi untuk validasi fungsi update & destroy. 

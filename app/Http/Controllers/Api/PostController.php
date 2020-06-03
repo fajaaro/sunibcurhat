@@ -14,8 +14,10 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api')->except(['index', 'show']);
+        $this->middleware('author')->only(['update', 'destroy']);
     }
 
+    // all users can access this function
     public function index()
     {
         $posts = PostResource::collection(
@@ -28,6 +30,7 @@ class PostController extends Controller
         ]);
     }
 
+    // all users can access this function
     public function store(StorePost $request)
     {
         $newPost = Post::create($request->all());
@@ -39,6 +42,7 @@ class PostController extends Controller
         );
     }
 
+    // all users can access this function
     public function show($id)
     {
         $arrayResponse = $this->getOnePost($id);
@@ -48,8 +52,17 @@ class PostController extends Controller
         );
     }
 
+    // only post's user or admin can access this function
     public function update(UpdatePost $request, $id)
     {
+        if (!$this->validateAuthor($request->user(), $id)) {
+            return response()->json([
+                'message' => 'Unauthenticated.',
+            ], 401);            
+        }
+        
+        unset($request['user']);
+
         $post = Post::find($id);
         $post->fill($request->all());
         $post->save();
@@ -61,8 +74,17 @@ class PostController extends Controller
         );
     }
 
+    // only post's user or admin can access this function
     public function destroy($id)
     {
+        if (!$this->validateAuthor($request->user(), $id)) {
+            return response()->json([
+                'message' => 'Unauthenticated.',
+            ], 401);            
+        }
+
+        unset($request['user']);
+
         Post::destroy($id);
 
         $posts = PostResource::collection(
@@ -76,6 +98,7 @@ class PostController extends Controller
         ]);
     }
     
+    // all users can access this function
     private function getOnePost($id)
     {
         $post = new PostResource(
@@ -86,5 +109,15 @@ class PostController extends Controller
             'status' => 'success',
             'data' => $post,
         );
+    }
+
+    // all users can access this function
+    private function validateAuthor($user, $post_id)
+    {
+        if ($user->is_admin) return true;
+
+        $post = Post::find($post_id);
+
+        return $user->id == $post->user_id;
     }
 }

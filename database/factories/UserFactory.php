@@ -23,6 +23,7 @@ $factory->state(User::class, 'user-fajar', function (Faker $faker) {
         'password' => Hash::make('fajar123'),
         'api_token' => Str::random(80),
         'birthdate' => '2001-03-14',
-        'gender' => 'Male'
+        'gender' => 'Male',
+        'is_admin' => 1,
     ]; 	
 });
