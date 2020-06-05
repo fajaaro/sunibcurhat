@@ -11,3 +11,9 @@ Second commit (03-06-2020 19:39 WIB)
 - Menerapkan middleware pada fungsi update & destroy.
 - Menambahkan kolom is_admin pada table users.
 - Membuat fungsi untuk validasi fungsi update & destroy. 
+
+Third commit (05-06-2020 14:48 WIB)
+- Membuat CommentController dan menyelesaikan fungsi-fungsi yang ada di dalamnya.
+- Membuat route API untuk comments.
+- Menambahkan request pada fungsi destroy disetiap controller.
+- Mengubah data yang di return oleh UserResource.

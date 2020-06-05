@@ -75,7 +75,7 @@ class PostController extends Controller
     }
 
     // only post's user or admin can access this function
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         if (!$this->validateAuthor($request->user(), $id)) {
             return response()->json([
@@ -93,8 +93,8 @@ class PostController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $posts,
             'message' => "Success delete post with id {$id}!",
+            'data' => $posts,
         ]);
     }
     

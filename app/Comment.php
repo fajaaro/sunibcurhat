@@ -32,4 +32,17 @@ class Comment extends Model
     {
     	return $this->morphMany('App\Dislike', 'dislikeable');
     }
+
+    public function scopeWithRelations(Builder $query) {
+        return $query->with([
+            'user', 
+            'user.campus', 
+            'user.avatar', 
+            'post', 
+            'post.likes', 
+            'post.dislikes', 
+            'likes', 
+            'dislikes'
+        ]);
+    }
 }

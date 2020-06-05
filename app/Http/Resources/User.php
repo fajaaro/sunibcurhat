@@ -14,12 +14,14 @@ class User extends JsonResource
             'username' => $this->username,
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at,
-            'password' => $this->password,
-            'api_token' => $this->api_token,
             'birthdate' => $this->birthdate,
             'gender' => $this->gender,
             'created_at' => (string)$this->created_at,
             'updated_at' => (string)$this->updated_at,
+            'campus' => $this->whenLoaded('campus'),  
+            'avatar' => $this->whenLoaded('avatar'),
+            'posts' => $this->whenLoaded('posts'),    
+            'comments' => $this->whenLoaded('comments'),    
         ];
     }
 }

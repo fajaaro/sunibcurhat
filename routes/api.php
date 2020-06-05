@@ -9,4 +9,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::name('api.')->namespace('Api')->group(function() {
 	Route::apiResource('posts', 'PostController');
+	Route::apiResource('comments', 'CommentController')->only(['store', 'update', 'destroy']);
 });

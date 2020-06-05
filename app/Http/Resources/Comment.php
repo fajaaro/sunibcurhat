@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Post as PostResource;
 use App\Http\Resources\User as UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,6 +18,7 @@ class Comment extends JsonResource
             'created_at' => (string)$this->created_at,
             'updated_at' => (string)$this->updated_at,
             'user' => new UserResource($this->whenLoaded('user')),
+            'post' => new PostResource($this->whenLoaded('post')),
             'total_likes' => count($this->whenLoaded('likes')),
             'total_dislikes' => count($this->whenLoaded('dislikes')),
         ];

@@ -36,7 +36,9 @@ class Post extends Model
     public function scopeWithRelations(Builder $query)
     {
         return $query->with([
-            'user', 
+            'user',
+            'user.campus', 
+            'user.avatar', 
             'comments', 
             'comments.likes', 
             'comments.dislikes', 
